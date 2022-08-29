@@ -23,15 +23,15 @@ on:
         description: 'Test scenario tags'
         required: true
         type: string
-      environment:
-        description: 'Environment to run tests against'
-        required: true
-        type: environment
-        options:
-          - dev
-          - test
-          - prod
-        default: 'dev'
+      # environment:
+      #   description: 'Environment to run tests against'
+      #   required: true
+      #   type: environment
+      #   options:
+      #     - dev
+      #     - test
+      #     - prod
+      #   default: 'dev'
 
 jobs:
   print-tag:
