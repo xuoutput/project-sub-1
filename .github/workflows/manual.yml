@@ -11,31 +11,31 @@ on:
           - warning
           - debug
         default: 'warning'
-      deploy_env:
-        description: 'deploy env'
-        required: false
-        type: choice
-        options:
-          - dev
-          - test
-          - prod
-        default: 'dev'
-      build_id:
-        description: 'build id'
-        required: false
-        type: number
-      print_tags:
-        description: 'True to print to STDOUT'
-        required: false
-        type: boolean
-      tags:
-        description: 'Test scenario tags'
-        required: false
-        type: string
-      environment:
-        description: 'Environment to run tests against'
-        required: false
-        type: environment
+      # deploy_env:
+      #   description: 'deploy env'
+      #   required: false
+      #   type: choice
+      #   options:
+      #     - dev
+      #     - test
+      #     - prod
+      #   default: 'dev'
+      # build_id:
+      #   description: 'build id'
+      #   required: false
+      #   type: number
+      # print_tags:
+      #   description: 'True to print to STDOUT'
+      #   required: false
+      #   type: boolean
+      # tags:
+      #   description: 'Test scenario tags'
+      #   required: false
+      #   type: string
+      # environment:
+      #   description: 'Environment to run tests against'
+      #   required: false
+      #   type: environment
 
 jobs:
   dev-deploy:
