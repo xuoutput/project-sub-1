@@ -9,34 +9,34 @@ on:
         options:
           - info
           - warning
-          - debug 
-        default: 'warning' 
-     build_id:
+          - debug
+        default: 'warning'
+      build_id:
         description: 'build id'
         required: true
         type: number
       print_tags:
         description: 'True to print to STDOUT'
-        required: true 
-        type: boolean 
+        required: true
+        type: boolean
       tags:
         description: 'Test scenario tags'
-        required: true 
+        required: true
         type: string
       environment:
         description: 'Environment to run tests against'
-        required: true 
+        required: true
         type: environment
         options:
           - dev
           - test
-          - prod 
-        default: 'dev' 
+          - prod
+        default: 'dev'
 
 jobs:
   print-tag:
     runs-on: ubuntu-latest
-    if:  ${{ inputs.print_tags }} 
+    if: ${{ inputs.print_tags }}
     steps:
       - name: Print the input tag to STDOUT
         run: echo  The info are tag ${{ inputs.tags }} build ${{ inputs.build_id }} --target ${{ inputs.deploy_target }}
