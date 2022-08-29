@@ -39,4 +39,4 @@ jobs:
     if: ${{ inputs.print_tags }}
     steps:
       - name: Print the input tag to STDOUT
-        run: echo  The info are tag ${{ inputs.tags }} build ${{ inputs.build_id }} --target ${{ inputs.deploy_target }}
+        run: echo  The info are tag ${{ inputs.tags }} build_id ${{ inputs.build_id }} --logLevel ${{ inputs.logLevel }}
