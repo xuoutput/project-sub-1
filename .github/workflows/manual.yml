@@ -38,6 +38,22 @@ on:
       #   type: environment
 
 jobs:
+  dump_contexts_to_log:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dump GitHub context
+        id: github_context_step
+        run: echo '${{ toJSON(github) }}'
+      - name: Dump job context
+        run: echo '${{ toJSON(job) }}'
+      - name: Dump steps context
+        run: echo '${{ toJSON(steps) }}'
+      - name: Dump runner context
+        run: echo '${{ toJSON(runner) }}'
+      - name: Dump strategy context
+        run: echo '${{ toJSON(strategy) }}'
+      - name: Dump matrix context
+        run: echo '${{ toJSON(matrix) }}'
   dev-deploy:
     name: deplpy to dev server
     runs-on: ubuntu-18.04
@@ -45,28 +61,13 @@ jobs:
       - id: checkout
         name: checkou main
         uses: actions/checkout@v3
-      - name: Login to Docker Hub
-        uses: docker/login-action@v2
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
+        env:          
+          testTag: "tag:${{ inputs.tag }}, ref_name: ${{ github.ref_name }}"
       - name: Build && Push
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: ximage/app:v0.1.0
-      # - name: Login to GitHub Container Registry
-      #   uses: docker/login-action@v2
-      #   with:
-      #     registry: ghcr.io
-      #     username: ${{ secrets.ACTOR }}
-      #     password: ${{ secrets.TOKEN_ACTION }}
-      # - name: Build && Push
-      #   uses: docker/build-push-action@v2
-      #   with:
-      #     push: true
-      #     context: .
-      #     file: Dockerfile
-      #     tags: |
-      #       ghcr.io/matrixone-cloud/auth-service:${{ github.event.inputs.tag }}
-      #       ghcr.io/matrixone-cloud/auth-service:latest
+          context: .
+          file: Dockerfile
+          tags: |
+            g/frontend:${{ inputs.tag }}
