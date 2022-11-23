@@ -24,14 +24,14 @@ on:
       #   description: 'build id'
       #   required: false
       #   type: number
-      # print_tags:
-      #   description: 'True to print to STDOUT'
-      #   required: false
-      #   type: boolean
-      # tags:
-      #   description: 'Test scenario tags'
-      #   required: false
-      #   type: string
+      print_tags:
+        description: 'True to print to STDOUT'
+        required: false
+        type: boolean
+      tags:
+        description: 'Test scenario tags'
+        required: false
+        type: string
       # environment:
       #   description: 'Environment to run tests against'
       #   required: false
@@ -63,11 +63,14 @@ jobs:
         uses: actions/checkout@v3
         env:          
           testTag: "tag:${{ inputs.tag }}, ref_name: ${{ github.ref_name }}"
-      - name: Build && Push
-        uses: docker/build-push-action@v2
-        with:
-          push: true
-          context: .
-          file: Dockerfile
-          tags: |
-            g/frontend:${{ inputs.tag }}
+      - name: check branch
+        run: |
+          git status
+      # - name: Build && Push
+      #   uses: docker/build-push-action@v2
+      #   with:
+      #     push: true
+      #     context: .
+      #     file: Dockerfile
+      #     tags: |
+      #       g/frontend:${{ inputs.tag }}
